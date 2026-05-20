@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Justin's Food Court – Ruaka, Nairobi</title>
+<link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+<div class="cart-pill" id="cp">🛒 <span id="cn">0</span></div>
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">Justin's<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#delivery">Order</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#location">Find Us</a></li>
+  </ul>
+  <a href="https://www.ubereats.com/ke/store/justin-foods/Xt0cBWn7U7qgjhJhTswi8g" target="_blank" class="nav-cta">Order Now 🚀</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-grid"></div>
+  <div class="floats" id="floats"></div>
+  <div class="hero-content">
+    <div class="hbadge">📍 Kirunge Drive, Off Limuru Road, Ruaka — Open 24 Hours</div>
+    <h1 class="hero-title"><span class="l1">Real Food.</span><span class="l2">Real Flavour.</span><span class="l3">Ruaka.</span></h1>
+    <div class="hrating"><span class="stars">★★★★</span><strong>4.0</strong><span style="color:var(--muted)">• 900+ ratings on Uber Eats</span></div>
+    <p class="hsub">Ruaka's favourite food court — burgers, pilau, fries & more.<br><strong>Hot, fresh & available 24/7.</strong></p>
+    <div class="hbtns">
+      <a href="#menu" class="btn-r">🍽️ View Full Menu</a>
+      <a href="https://www.ubereats.com/ke/store/justin-foods/Xt0cBWn7U7qgjhJhTswi8g" target="_blank" class="btn-o">🛵 Order on Uber Eats</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="sl"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee"><span class="marquee-inner">🔥 20% OFF Beef Burger with Garlic Chips &nbsp;|&nbsp; 🎉 BUY 1 GET 1 FREE — Mega Bacon Burger &nbsp;|&nbsp; 🍟 30% OFF Chicken Burger with Masala Chips &nbsp;|&nbsp; 🥤 FREE Sprite with orders over KES 1,000 &nbsp;|&nbsp; ⚡ Open 24 Hours — Order on Uber Eats Now &nbsp;|&nbsp;</span></div>
+
+<!-- STATUS BAR -->
+<div class="sbar">
+  <div class="si"><div class="sdot"></div><strong>Open 24 Hours — Every Day</strong></div>
+  <div class="si">📍 <strong>Kirunge Drive, Ruaka</strong></div>
+  <div class="si">⭐ <strong>4.0 · 900+ Reviews</strong></div>
+  <div class="si">🛵 <strong>Uber Eats Delivery</strong></div>
+</div>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="sec-header rv">
+    <div class="sec-label">What We Serve</div>
+    <div class="sec-title">Our <span>Menu</span></div>
+    <p class="sec-sub">Real items, real prices — direct from our Uber Eats listing. Tap + to add to your order.</p>
+  </div>
+  <div class="tabs rv" id="tabs"></div>
+  <div class="mgrid" id="mgrid"></div>
+</section>
+
+<!-- REVIEWS -->
+<section class="rev-section" id="reviews">
+  <div class="rev-header rv">
+    <div class="sec-label">What Customers Say</div>
+    <div class="sec-title">Real <span>Reviews</span></div>
+  </div>
+  <div style="overflow:hidden"><div class="rev-track" id="revTrack"></div></div>
+</section>
+
+<!-- DELIVERY -->
+<section class="del-section" id="delivery">
+  <div class="rv">
+    <div class="sec-label">Order Online</div>
+    <div class="sec-title">Delivered To <span>Your Door</span></div>
+    <p class="sec-sub" style="margin:0 auto;text-align:center">Too comfortable to move? We've got you covered.</p>
+  </div>
+  <div class="dcards rv">
+    <a href="https://www.ubereats.com/ke/store/justin-foods/Xt0cBWn7U7qgjhJhTswi8g" target="_blank" class="dcard uber">
+      <span class="dcard-icon">🟢</span>
+      <div class="dcard-name">Uber Eats</div>
+      <div class="dcard-status">✅ Available Now · 4.0★ · 900+ reviews</div>
+      <div class="dcard-btn">Order Now →</div>
+    </a>
+    <div class="dcard glovo">
+      <span class="dcard-icon">💛</span>
+      <div class="dcard-name">Glovo</div>
+      <div class="dcard-status">Search "Justin's Food Court" in the Glovo app</div>
+      <div class="dcard-btn">Open Glovo →</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="loc-section" id="location">
+  <div class="loc-inner">
+    <div class="rv">
+      <div class="sec-label">Find Us</div>
+      <div class="sec-title">We're Right <span>Here</span></div>
+      <div class="iitems">
+        <div class="iitem"><div class="iicon">📍</div><div><div class="ilabel">Address</div><div class="ival">Kirunge Drive, Off Limuru Road<br>Ruaka, Nairobi, Kenya<br><span style="color:var(--muted);font-size:.82rem">Near Quickmart Ruaka</span></div></div></div>
+        <div class="iitem"><div class="iicon">🕐</div><div><div class="ilabel">Opening Hours</div><div class="ival" style="color:var(--green);font-weight:600">Open 24 Hours — Every Day<br><span style="color:var(--muted);font-weight:400;font-size:.82rem">00:00 – 23:59, 365 days a year</span></div></div></div>
+        <div class="iitem"><div class="iicon">🚌</div><div><div class="ilabel">Getting Here</div><div class="ival">Matatu routes 106, 107, 111<br>Alight at Ruaka Quickmart stage</div></div></div>
+        <div class="iitem"><div class="iicon">🛵</div><div><div class="ilabel">Delivery</div><div class="ival"><a href="https://www.ubereats.com/ke/store/justin-foods/Xt0cBWn7U7qgjhJhTswi8g" target="_blank" style="color:var(--gold);font-weight:600">Order on Uber Eats →</a></div></div></div>
+      </div>
+    </div>
+    <div class="mapbox rv">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.764!2d36.7829589!3d-1.2072625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f3dff65190b73%3A0x8a0e94f67b5229f3!2sJUSTINS%20FOOD%20COURT!5e0!3m2!1sen!2ske!4v1715000000000" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="ftop">
+      <div>
+        <div class="flogo">Justin's<span>.</span></div>
+        <p class="fdesc">Ruaka's number one food court. Real food, real flavour, open 24 hours on Kirunge Drive, off Limuru Road.</p>
+      </div>
+      <div class="fcol"><h4>Navigate</h4><ul><li><a href="#menu">Menu</a></li><li><a href="#delivery">Order Online</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#location">Location</a></li></ul></div>
+      <div class="fcol"><h4>Order On</h4><ul><li><a href="https://www.ubereats.com/ke/store/justin-foods/Xt0cBWn7U7qgjhJhTswi8g" target="_blank">Uber Eats ↗</a></li><li><a href="#">Glovo ↗</a></li></ul></div>
+    </div>
+    <div class="fbot">
+      <p>© 2026 Justin's Food Court · Ruaka, Nairobi, Kenya</p>
+      <div class="socials"><a class="soc">📘</a><a class="soc">📸</a><a class="soc">💬</a></div>
+    </div>
+  </div>
+</footer>
+
+
+<script src="main.js"></script>
+</body>
+</html>
