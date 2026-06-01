@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nairobi Gems — Find Where Nairobi Comes Alive</title>
+  <meta name="description" content="Discover Nairobi's best hidden gems — clubs, restaurants, rooftops, and weekend hotspots for locals and tourists alike." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── WEEKEND TICKER ── -->
+  <div class="ticker">
+    <div class="ticker__dot"></div>
+    <span>🎉 It's Nairobi — the weekend never really ends. Here's where to be.</span>
+    <div class="ticker__dot"></div>
+  </div>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="navbar">
+    <div class="nav__brand">
+      <span class="nav__gem">◆</span> Nairobi Gems
+    </div>
+    <div class="nav__links">
+      <a href="#gems">Explore</a>
+      <a href="#new-spots">New Spots</a>
+      <a href="#about">About</a>
+      <button class="btn-nav" onclick="document.getElementById('gems').scrollIntoView({behavior:'smooth'})">Weekend Picks 🔥</button>
+    </div>
+    <button class="nav__burger" id="burger" aria-label="Menu">&#9776;</button>
+  </nav>
+
+  <!-- ── MOBILE MENU ── -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#gems" onclick="closeMobileMenu()">Explore</a>
+    <a href="#new-spots" onclick="closeMobileMenu()">New Spots</a>
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="badge">Nairobi's Best Kept Secrets</div>
+      <h1 class="hero__title">
+        Find Where
+        <span class="hero__accent">Nairobi</span>
+        Comes Alive
+      </h1>
+      <p class="hero__sub">
+        Hidden rooftops, legendary lounges, late-night kitchens, and weekend brunch spots —
+        curated for locals and wanderers alike.
+      </p>
+      <div class="hero__actions">
+        <button class="btn-primary" onclick="document.getElementById('gems').scrollIntoView({behavior:'smooth'})">
+          Explore the Gems
+        </button>
+        <button class="btn-ghost" onclick="filterCards('weekend', null)">
+          Weekend Picks 🎉
+        </button>
+      </div>
+    </div>
+    <div class="hero__scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip">
+    <div class="stat"><span class="stat__num">15+</span><span class="stat__label">Curated Spots</span></div>
+    <div class="stat__divider"></div>
+    <div class="stat"><span class="stat__num">7</span><span class="stat__label">Neighbourhoods</span></div>
+    <div class="stat__divider"></div>
+    <div class="stat"><span class="stat__num">5★</span><span class="stat__label">Local Rating</span></div>
+    <div class="stat__divider"></div>
+    <div class="stat"><span class="stat__num">24/7</span><span class="stat__label">Nairobi Energy</span></div>
+  </div>
+
+  <!-- ── ORIGINAL GEMS ── -->
+  <section class="section" id="gems">
+    <div class="section__header">
+      <div class="section-label">The Collection</div>
+      <h2 class="section__title">Nairobi's Finest Spots</h2>
+    </div>
+
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">All Spots</button>
+      <button class="filter-btn" data-filter="nightlife">🎶 Nightlife</button>
+      <button class="filter-btn" data-filter="dining">🍽 Dining</button>
+      <button class="filter-btn" data-filter="rooftop">🌇 Rooftop</button>
+      <button class="filter-btn" data-filter="brunch">☕ Brunch</button>
+      <button class="filter-btn" data-filter="lounge">🥂 Lounge</button>
+      <button class="filter-btn" data-filter="weekend">🔥 Weekend Lit</button>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid">
+
+      <!-- Urban Eatery -->
+      <article class="gem-card" data-tags="dining weekend" data-id="urban">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Urban Eatery" loading="lazy" />
+          <span class="card__badge badge--dining">Dining</span>
+          <span class="card__hot" title="Hot this weekend">🔥</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Urban Eatery</h3>
+          <div class="card__meta">
+            <span>📍 Westlands</span>
+            <span>⏰ 7am – Midnight</span>
+          </div>
+          <p class="card__desc">A beloved Nairobi institution for hearty breakfasts and vibrant dinner crowds. The grilled chicken platter is legendary.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Casual</span>
+              <span class="vibe-tag">Groups</span>
+            </div>
+            <span class="card__price">KES 500–1,500</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Nairobi Street Kitchen -->
+      <article class="gem-card" data-tags="dining weekend" data-id="nsk">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Nairobi Street Kitchen" loading="lazy" />
+          <span class="card__badge badge--dining">Street Food</span>
+          <span class="card__hot">🔥</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Nairobi Street Kitchen</h3>
+          <div class="card__meta">
+            <span>📍 CBD</span>
+            <span>⏰ 11am – 11pm</span>
+          </div>
+          <p class="card__desc">Where Nairobi's street food culture meets a proper kitchen. Bold flavours, communal tables, and a buzzing weekend atmosphere.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Lively</span>
+              <span class="vibe-tag">Local</span>
+            </div>
+            <span class="card__price">KES 300–900</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Black Samurai Lounge -->
+      <article class="gem-card" data-tags="nightlife lounge weekend" data-id="blacksamurai">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80" alt="Black Samurai Lounge" loading="lazy" />
+          <span class="card__badge badge--nightlife">Nightlife</span>
+          <span class="card__hot">🔥</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Black Samurai Lounge</h3>
+          <div class="card__meta">
+            <span>📍 Westlands</span>
+            <span>⏰ 5pm – 4am</span>
+          </div>
+          <p class="card__desc">Sleek, moody, and unapologetically Nairobi. Afrobeats and cocktails in a lounge that feels like a secret even when it's packed.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Afrobeats</span>
+              <span class="vibe-tag">Dark &amp; Cool</span>
+            </div>
+            <span class="card__price">KES 1,000–3,000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- K1 Klub House -->
+      <article class="gem-card" data-tags="nightlife weekend" data-id="k1">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="K1 Klub House" loading="lazy" />
+          <span class="card__badge badge--nightlife">Club</span>
+          <span class="card__hot">🔥</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">K1 Klub House</h3>
+          <div class="card__meta">
+            <span>📍 Parklands</span>
+            <span>⏰ Fri–Sun from 9pm</span>
+          </div>
+          <p class="card__desc">A Nairobi nightlife legend. K1 has been the heartbeat of the city's party scene for decades — still going strong every weekend. Famous reggae Thursdays.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Iconic</span>
+              <span class="vibe-tag">Late Night</span>
+            </div>
+            <span class="card__price">Entry ~KES 500</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Yunion -->
+      <article class="gem-card" data-tags="brunch dining" data-id="yunion">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&q=80" alt="Yunion Brunch" loading="lazy" />
+          <span class="card__badge badge--brunch">Brunch</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Yunion — Brunch Café &amp; Bar</h3>
+          <div class="card__meta">
+            <span>📍 Westlands</span>
+            <span>⏰ 8am – 10pm</span>
+          </div>
+          <p class="card__desc">Nairobi's favourite brunch spot for those who like their eggs served with a side of bottomless mimosas and good music.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Chill</span>
+              <span class="vibe-tag">Instagrammable</span>
+            </div>
+            <span class="card__price">KES 800–2,000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kettel House -->
+      <article class="gem-card" data-tags="dining lounge" data-id="kettel">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Kettel House" loading="lazy" />
+          <span class="card__badge badge--dining">Bar &amp; Grill</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Kettel House Bar &amp; Grill</h3>
+          <div class="card__meta">
+            <span>📍 Karen</span>
+            <span>⏰ 12pm – 11pm</span>
+          </div>
+          <p class="card__desc">A Karen gem — sprawling gardens, wood-fired grills, and cold Tuskers on a warm Nairobi afternoon. Deeply local, incredibly good.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Outdoor</span>
+              <span class="vibe-tag">Relaxed</span>
+            </div>
+            <span class="card__price">KES 700–2,000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Mass House -->
+      <article class="gem-card" data-tags="nightlife lounge weekend" data-id="masshouse">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&q=80" alt="Mass House" loading="lazy" />
+          <span class="card__badge badge--nightlife">Live Music</span>
+          <span class="card__hot">🔥</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Mass House</h3>
+          <div class="card__meta">
+            <span>📍 Westlands</span>
+            <span>⏰ 4pm – 4am</span>
+          </div>
+          <p class="card__desc">Live bands, DJ sets, and a crowd that actually knows how to dance. One of Nairobi's most electric weekend spots, hands down.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Live Music</span>
+              <span class="vibe-tag">High Energy</span>
+            </div>
+            <span class="card__price">KES 500–2,500</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 270° Rooftop -->
+      <article class="gem-card" data-tags="rooftop dining weekend" data-id="270">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600&q=80" alt="270 Rooftop" loading="lazy" />
+          <span class="card__badge badge--rooftop">Rooftop</span>
+          <span class="card__hot">🔥</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">270° Rooftop Restaurant</h3>
+          <div class="card__meta">
+            <span>📍 Kilimani</span>
+            <span>⏰ 12pm – 2am</span>
+          </div>
+          <p class="card__desc">Sweeping views of the Nairobi skyline, craft cocktails, and sunsets that make you feel like the city is all yours.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Scenic</span>
+              <span class="vibe-tag">Date Night</span>
+            </div>
+            <span class="card__price">KES 1,500–4,000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kahani -->
+      <article class="gem-card" data-tags="dining lounge" data-id="kahani">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1585518419759-7fe2e0fbf8a6?w=600&q=80" alt="Kahani Restaurant" loading="lazy" />
+          <span class="card__badge badge--lounge">Restaurant</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Kahani</h3>
+          <div class="card__meta">
+            <span>📍 Gigiri</span>
+            <span>⏰ 12pm – 10:30pm</span>
+          </div>
+          <p class="card__desc">Kahani tells a story through Indian-inspired cuisine. Aromatic, artful, and seriously underrated — a hidden gem in the truest sense.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Hidden Gem</span>
+              <span class="vibe-tag">Fine Dining</span>
+            </div>
+            <span class="card__price">KES 1,500–4,500</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── NEW / BOOMING SPOTS ── -->
+  <section class="section section--dark" id="new-spots">
+    <div class="section__header">
+      <div class="section-label">Newly Added</div>
+      <h2 class="section__title">Also Booming Right Now</h2>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- The Alchemist -->
+      <article class="gem-card" data-tags="nightlife weekend" data-id="alchemist">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&q=80" alt="The Alchemist" loading="lazy" />
+          <span class="card__badge badge--nightlife">Institution</span>
+          <span class="card__hot">🔥</span>
+          <span class="card__new">NEW</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">The Alchemist</h3>
+          <div class="card__meta">
+            <span>📍 Westlands</span>
+            <span>⏰ 1pm – 4am</span>
+          </div>
+          <p class="card__desc">Nairobi's most iconic creative hub. Food trucks, live music, open-air movie nights, DJs, ping pong — it's not just a bar, it's an experience. Happy hour everyday 3–8pm.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Afrohouse</span>
+              <span class="vibe-tag">Food Trucks</span>
+              <span class="vibe-tag">Open Air</span>
+            </div>
+            <span class="card__price">KES 500 (redeemable)</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Hero Bar -->
+      <article class="gem-card" data-tags="lounge nightlife" data-id="hero">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=80" alt="Hero Bar" loading="lazy" />
+          <span class="card__badge badge--lounge">Speakeasy</span>
+          <span class="card__new">NEW</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Hero Bar</h3>
+          <div class="card__meta">
+            <span>📍 Westlands (Trademark Hotel, 9th fl)</span>
+            <span>⏰ 5pm – 2am</span>
+          </div>
+          <p class="card__desc">East Africa's #1 cocktail bar and Nairobi's first speakeasy. Manga-style menu, African-inspired spirits, a rooftop cocktail lab, and graffiti by local artists. Ranked best bar in Africa by 50 Best.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Craft Cocktails</span>
+              <span class="vibe-tag">Upscale</span>
+            </div>
+            <span class="card__price">KES 1,500–5,000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Brew Bistro -->
+      <article class="gem-card" data-tags="nightlife dining weekend" data-id="brew">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80" alt="Brew Bistro" loading="lazy" />
+          <span class="card__badge badge--nightlife">Craft Beer</span>
+          <span class="card__hot">🔥</span>
+          <span class="card__new">NEW</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Brew Bistro &amp; Lounge</h3>
+          <div class="card__meta">
+            <span>📍 Ngong Road</span>
+            <span>⏰ 12pm – 4am</span>
+          </div>
+          <p class="card__desc">Nairobi's original craft beer destination on Piedmont Plaza. Master brewers, premium in-house brews, gourmet food, and a terrace that comes alive at night. Happy hour 5–7pm.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Craft Beer</span>
+              <span class="vibe-tag">DJ Nights</span>
+              <span class="vibe-tag">Karaoke</span>
+            </div>
+            <span class="card__price">KES 600–2,500</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Sarabi Rooftop -->
+      <article class="gem-card" data-tags="rooftop lounge" data-id="sarabi">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1533777324565-a040eb52fac4?w=600&q=80" alt="Sarabi Rooftop" loading="lazy" />
+          <span class="card__badge badge--rooftop">Rooftop</span>
+          <span class="card__new">NEW</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Sarabi Rooftop Bar</h3>
+          <div class="card__meta">
+            <span>📍 Westlands (Sankara Hotel)</span>
+            <span>⏰ 11am – 2am</span>
+          </div>
+          <p class="card__desc">Upscale rooftop at Sankara Hotel — infinity pool, lounge seating, one of the best cocktail menus in town, and a skyline view that never gets old.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Luxury</span>
+              <span class="vibe-tag">Infinity Pool</span>
+            </div>
+            <span class="card__price">KES 1,500–5,000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Havana Bar -->
+      <article class="gem-card" data-tags="nightlife dining weekend" data-id="havana">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Havana Bar" loading="lazy" />
+          <span class="card__badge badge--nightlife">Latin Vibes</span>
+          <span class="card__hot">🔥</span>
+          <span class="card__new">NEW</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Havana Bar &amp; Restaurant</h3>
+          <div class="card__meta">
+            <span>📍 Westlands</span>
+            <span>⏰ 12pm – 4am</span>
+          </div>
+          <p class="card__desc">Cuban-inspired flair meets Nairobi energy. Downstairs is a great restaurant; upstairs transforms into a dance floor on weekends with Latin beats, Afrobeats and R&amp;B until 4am.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Salsa</span>
+              <span class="vibe-tag">Afrobeats</span>
+              <span class="vibe-tag">Late Night</span>
+            </div>
+            <span class="card__price">KES 800–2,500</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Unseen Nairobi -->
+      <article class="gem-card" data-tags="rooftop brunch dining" data-id="unseen">
+        <div class="card__img-wrap">
+          <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80" alt="Unseen Nairobi" loading="lazy" />
+          <span class="card__badge badge--rooftop">Hidden Gem</span>
+          <span class="card__new">NEW</span>
+        </div>
+        <div class="card__body">
+          <h3 class="card__title">Unseen Nairobi</h3>
+          <div class="card__meta">
+            <span>📍 Kilimani (Wood Avenue Plaza)</span>
+            <span>⏰ 8am – 11pm</span>
+          </div>
+          <p class="card__desc">Named Nairobi's best brunch restaurant. A rooftop garden bar with Asian-inspired cuisine, panoramic city views, rooftop movie nights, and an incredibly curated cocktail menu.</p>
+          <div class="card__footer">
+            <div class="vibe-tags">
+              <span class="vibe-tag">Best Brunch</span>
+              <span class="vibe-tag">Rooftop Movies</span>
+            </div>
+            <span class="card__price">KES 1,000–3,500</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── ABOUT SECTION ── -->
+  <section class="about-section" id="about">
+    <div class="about__inner">
+      <div class="section-label">About Nairobi Gems</div>
+      <h2 class="section__title">Made by a Nairobian, for Everyone</h2>
+      <p>Nairobi Gems was born out of one simple frustration — tourists and even locals constantly asking "where's the party?" or "where are the real hidden spots?" This site is the answer. Every spot here has been personally vetted, is genuinely great, and represents the real heartbeat of Nairobi's incredible social scene.</p>
+      <p>Know a place we've missed? We'd love to hear about it.</p>
+      <a href="mailto:hello@nairobigems.netlify.app" class="btn-primary">Submit a Gem ✉️</a>
+    </div>
+  </section>
+
+  <!-- ── MAP BANNER ── -->
+  <section class="map-banner-wrap">
+    <div class="map-banner">
+      <div class="map-banner__text">
+        <div class="section-label">Find Your Way</div>
+        <h2>Interactive Map — Coming Soon</h2>
+        <p>We're mapping every gem across Nairobi — from Karen to Westlands, Kilimani to Gigiri. Drop your location and find what's closest to you.</p>
+      </div>
+      <button class="btn-primary" onclick="alert('Map feature coming soon — follow us for updates!')">Notify Me 🗺️</button>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer__brand">◆ Nairobi Gems</div>
+    <p class="footer__tagline">Find where Nairobi comes alive.</p>
+    <div class="footer__links">
+      <a href="#gems">Explore</a>
+      <a href="#new-spots">New Spots</a>
+      <a href="#about">About</a>
+      <a href="mailto:hello@nairobigems.netlify.app">Contact</a>
+    </div>
+    <p class="footer__copy">© 2025 Nairobi Gems · Made with ❤️ by a local · <a href="mailto:hello@nairobigems.netlify.app">Submit a hidden gem →</a></p>
+  </footer>
+
+  <!-- ── MODAL ── -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal__close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal__img" id="modalImg"></div>
+      <div class="modal__body">
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <p class="modal__desc" id="modalDesc"></p>
+        <div class="modal__info" id="modalInfo"></div>
+        <button class="btn-primary btn--full" onclick="alert('Directions feature coming soon!')">📍 Get Directions</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
