@@ -284,3 +284,200 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     }
   });
 });
+
+/* ═══════════════════════════════════════════
+   EVENTS CAROUSEL
+   Source order: published Google Sheet CSV (if set) → events.json
+═══════════════════════════════════════════ */
+// Paste your published Google Sheet CSV link between the quotes (see README.md).
+const EVENTS_CSV_URL  = '';
+const EVENTS_JSON_URL = 'events.json';
+const EVENTS_MAX      = 8;
+const EVENTS_UTM      = { utm_source: 'nairobigems', utm_medium: 'events_carousel' };
+
+const eventsTrack = document.getElementById('eventsTrack');
+const eventsPrev  = document.getElementById('eventsPrev');
+const eventsNext  = document.getElementById('eventsNext');
+
+function nairobiToday() {
+  return new Date().toLocaleDateString('en-CA', { timeZone: 'Africa/Nairobi' }); // YYYY-MM-DD
+}
+
+function addDays(iso, n) {
+  const d = new Date(iso + 'T00:00:00Z');
+  d.setUTCDate(d.getUTCDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') inQuotes = false;
+      else field += c;
+    } else if (c === '"') inQuotes = true;
+    else if (c === ',') { row.push(field); field = ''; }
+    else if (c === '\n' || c === '\r') {
+      if (c === '\r' && text[i + 1] === '\n') i++;
+      row.push(field); field = '';
+      if (row.some(v => v.trim() !== '')) rows.push(row);
+      row = [];
+    } else field += c;
+  }
+  row.push(field);
+  if (row.some(v => v.trim() !== '')) rows.push(row);
+  if (!rows.length) return [];
+  const keys = rows[0].map(k => k.trim().toLowerCase().replace(/[\s-]+/g, '_'));
+  return rows.slice(1).map(r => {
+    const o = {};
+    keys.forEach((k, i) => { o[k] = (r[i] || '').trim(); });
+    return o;
+  });
+}
+
+function safeUrl(u, allowRelative) {
+  if (!u) return '';
+  try {
+    const url = new URL(u, allowRelative ? location.href : undefined);
+    return (url.protocol === 'http:' || url.protocol === 'https:') ? (allowRelative && !/^https?:/i.test(u) ? u : url.href) : '';
+  } catch (e) { return ''; }
+}
+
+function normaliseEvent(raw, today) {
+  const sample = String(raw.sample || '').toLowerCase() === 'true' || raw.sample === true;
+  let date = String(raw.date || '').trim();
+  if (!date && raw.days_from_now !== undefined && raw.days_from_now !== '') {
+    date = addDays(today, Number(raw.days_from_now));
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
+  const title = String(raw.title || '').trim();
+  if (!title) return null;
+  return {
+    title, date, sample,
+    time:     String(raw.time || '').trim(),
+    venue:    String(raw.venue || '').trim(),
+    price:    String(raw.price || '').trim(),
+    category: String(raw.category || '').trim(),
+    image:    safeUrl(raw.image, true),
+    ticket:   safeUrl(raw.ticket_url || raw.ticketurl || raw.ticketUrl, false),
+  };
+}
+
+function ticketHref(url) {
+  try {
+    const u = new URL(url);
+    Object.entries(EVENTS_UTM).forEach(([k, v]) => { if (!u.searchParams.has(k)) u.searchParams.set(k, v); });
+    return u.href;
+  } catch (e) { return url; }
+}
+
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text !== undefined) n.textContent = text;
+  return n;
+}
+
+function buildEventCard(ev) {
+  const d = new Date(ev.date + 'T00:00:00Z');
+  const card = el('article', 'ev-card');
+
+  const imgWrap = el('div', 'ev-card__img');
+  if (ev.image) {
+    const img = document.createElement('img');
+    img.src = ev.image; img.alt = ''; img.loading = 'lazy';
+    img.addEventListener('error', () => img.remove());
+    imgWrap.appendChild(img);
+  }
+  const date = el('div', 'ev-date');
+  date.appendChild(el('span', 'ev-date__day', d.toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'UTC' })));
+  date.appendChild(el('span', 'ev-date__num',
+    d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', timeZone: 'UTC' })));
+  imgWrap.appendChild(date);
+  if (ev.category) imgWrap.appendChild(el('span', 'ev-cat', ev.category));
+  if (ev.sample)   imgWrap.appendChild(el('span', 'ev-sample', 'Sample event'));
+  card.appendChild(imgWrap);
+
+  const body = el('div', 'ev-card__body');
+  body.appendChild(el('h3', 'ev-card__title', ev.title));
+  const meta = [ev.venue && '📍 ' + ev.venue, ev.time && '⏰ ' + ev.time].filter(Boolean).join('  ·  ');
+  if (meta) body.appendChild(el('p', 'ev-card__meta', meta));
+
+  const foot = el('div', 'ev-card__foot');
+  foot.appendChild(el('span', 'ev-card__price', ev.price));
+  if (ev.ticket) {
+    const a = el('a', 'ev-btn', 'Get tickets →');
+    a.href = ticketHref(ev.ticket);
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.setAttribute('aria-label', 'Get tickets for ' + ev.title + ' (opens in a new tab)');
+    foot.appendChild(a);
+  } else {
+    foot.appendChild(el('span', 'ev-btn ev-btn--off', 'Details soon'));
+  }
+  body.appendChild(foot);
+  card.appendChild(body);
+  return card;
+}
+
+function updateArrows() {
+  if (!eventsTrack) return;
+  const max = eventsTrack.scrollWidth - eventsTrack.clientWidth - 2;
+  eventsPrev.disabled = eventsTrack.scrollLeft <= 2;
+  eventsNext.disabled = eventsTrack.scrollLeft >= max;
+}
+
+function renderEvents(list) {
+  eventsTrack.innerHTML = '';
+  if (!list.length) {
+    const p = el('p', 'events__status', 'New events are added every week. ');
+    const a = el('a', '', 'Know one? Submit it →');
+    a.href = 'mailto:hello@nairobigems.netlify.app?subject=Submit%20an%20event';
+    p.appendChild(a);
+    eventsTrack.appendChild(p);
+  } else {
+    list.forEach(ev => eventsTrack.appendChild(buildEventCard(ev)));
+  }
+  updateArrows();
+}
+
+async function fetchEvents() {
+  const today = nairobiToday();
+  const sources = [];
+  if (EVENTS_CSV_URL) sources.push({ url: EVENTS_CSV_URL, type: 'csv' });
+  sources.push({ url: EVENTS_JSON_URL, type: 'json' });
+
+  for (const s of sources) {
+    try {
+      const res = await fetch(s.url, { cache: 'no-store' });
+      if (!res.ok) throw new Error(res.status);
+      const raw = s.type === 'csv' ? parseCSV(await res.text()) : await res.json();
+      return (Array.isArray(raw) ? raw : [])
+        .map(r => normaliseEvent(s.type === 'csv' ? r : Object.fromEntries(
+          Object.entries(r).map(([k, v]) => [k.replace(/([A-Z])/g, '_$1').toLowerCase(), v])), today))
+        .filter(ev => ev && ev.date >= today)
+        .sort((a, b) => a.date.localeCompare(b.date))
+        .slice(0, EVENTS_MAX);
+    } catch (e) { /* try the next source */ }
+  }
+  return null;
+}
+
+if (eventsTrack) {
+  fetchEvents().then(list => {
+    if (list === null) {
+      eventsTrack.innerHTML = '';
+      eventsTrack.appendChild(el('p', 'events__status', 'Events could not be loaded right now. Please check back soon.'));
+    } else {
+      renderEvents(list);
+    }
+  });
+  const step = () => Math.max(240, Math.round(eventsTrack.clientWidth * 0.8));
+  eventsPrev.addEventListener('click', () => eventsTrack.scrollBy({ left: -step(), behavior: 'smooth' }));
+  eventsNext.addEventListener('click', () => eventsTrack.scrollBy({ left:  step(), behavior: 'smooth' }));
+  eventsTrack.addEventListener('scroll', updateArrows, { passive: true });
+  window.addEventListener('resize', updateArrows);
+}
