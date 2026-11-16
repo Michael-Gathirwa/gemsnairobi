@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Sample: Rooftop Sundowner",
+    "days_from_now": 3,
+    "time": "5pm",
+    "venue": "Westlands",
+    "price": "From KES 1,500",
+    "category": "Rooftop",
+    "image": "https://images.unsplash.com/photo-1533777324565-a040eb52fac4?w=600&q=80",
+    "ticket_url": "https://www.eventbrite.com/d/kenya--nairobi/events/",
+    "sample": true
+  },
+  {
+    "title": "Sample: Afrobeats Night",
+    "days_from_now": 4,
+    "time": "9pm",
+    "venue": "Parklands",
+    "price": "Entry KES 500",
+    "category": "Nightlife",
+    "image": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80",
+    "ticket_url": "https://www.eventbrite.com/d/kenya--nairobi/events/",
+    "sample": true
+  },
+  {
+    "title": "Sample: Live Jazz Session",
+    "days_from_now": 6,
+    "time": "7pm",
+    "venue": "Westlands",
+    "price": "KES 800",
+    "category": "Live Music",
+    "image": "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=600&q=80",
+    "ticket_url": "https://www.eventbrite.com/d/kenya--nairobi/events/",
+    "sample": true
+  },
+  {
+    "title": "Sample: Sunday Brunch Garden",
+    "days_from_now": 8,
+    "time": "11am",
+    "venue": "Karen",
+    "price": "KES 2,000",
+    "category": "Brunch",
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",
+    "ticket_url": "https://www.eventbrite.com/d/kenya--nairobi/events/",
+    "sample": true
+  }
+]

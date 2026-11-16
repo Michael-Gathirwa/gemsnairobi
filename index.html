@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nairobi Gems — Find Where Nairobi Comes Alive</title>
-  <meta name="description" content="Discover Nairobi's best hidden gems — clubs, restaurants, rooftops, and weekend hotspots for locals and tourists alike." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <!-- ==========================================
@@ -22,18 +20,18 @@
 
 <!-- Open Graph / Facebook / WhatsApp -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://netlify.app" />
+<meta property="og:url" content="https://michael-gathirwa.github.io/gemsnairobi/" />
 <meta property="og:title" content="Nairobi Gems | Find Where Nairobi Comes Alive" />
 <meta property="og:description" content="Hidden rooftops, legendary lounges, and late-night kitchens. Curated for locals and global wanderers alike." />
-<meta property="og:image" content="https://netlify.appassets/og-preview.jpg" />
+<meta property="og:image" content="https://michael-gathirwa.github.io/gemsnairobi/background.jpg" />
 <meta property="og:site_name" content="Nairobi Gems" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://netlify.app" />
+<meta property="twitter:url" content="https://michael-gathirwa.github.io/gemsnairobi/" />
 <meta property="twitter:title" content="Nairobi Gems | Africa & Global Nightlife Guide" />
 <meta property="twitter:description" content="Explore hidden rooftops, legendary lounges, and late-night kitchens in Nairobi. Curated for locals and wanderers." />
-<meta property="twitter:image" content="https://netlify.appassets/og-preview.jpg" />
+<meta property="twitter:image" content="https://michael-gathirwa.github.io/gemsnairobi/background.jpg" />
 
 <!-- Geotargeting & Location Signals -->
 <meta name="geo.region" content="KE" />
@@ -42,9 +40,9 @@
 <meta name="ICBM" content="-1.2921, 36.8219" />
 
 <!-- Internationalization Fallbacks -->
-<link rel="alternate" href="https://netlify.app" hreflang="x-default" />
-<link rel="alternate" href="https://netlify.app" hreflang="en-ke" />
-<link rel="alternate" href="https://netlify.app" hreflang="en" />
+<link rel="alternate" href="https://michael-gathirwa.github.io/gemsnairobi/" hreflang="x-default" />
+<link rel="alternate" href="https://michael-gathirwa.github.io/gemsnairobi/" hreflang="en-ke" />
+<link rel="alternate" href="https://michael-gathirwa.github.io/gemsnairobi/" hreflang="en" />
 
 <!-- Schema.org Structured Data for Search Bots & AI -->
 <script type="application/ld+json">
@@ -52,12 +50,12 @@
   "@context": "https://schema.org",
   "@type": "Guide",
   "name": "Nairobi Gems",
-  "url": "https://netlify.app",
+  "url": "https://michael-gathirwa.github.io/gemsnairobi/",
   "description": "A curated directory of hidden rooftops, legendary lounges, late-night kitchens, and weekend brunch spots in Nairobi.",
   "publisher": {
     "@type": "Organization",
     "name": "Nairobi Gems",
-    "url": "https://netlify.app"
+    "url": "https://michael-gathirwa.github.io/gemsnairobi/"
   },
   "about": {
     "@type": "Thing",
@@ -98,6 +96,7 @@
       <span class="nav__gem">◆</span> Nairobi Gems
     </div>
     <div class="nav__links">
+      <a href="#events">Events</a>
       <a href="#gems">Explore</a>
       <a href="#new-spots">New Spots</a>
       <a href="#about">About</a>
@@ -108,13 +107,14 @@
 
   <!-- ── MOBILE MENU ── -->
   <div class="mobile-menu" id="mobileMenu">
+    <a href="#events" onclick="closeMobileMenu()">Events</a>
     <a href="#gems" onclick="closeMobileMenu()">Explore</a>
     <a href="#new-spots" onclick="closeMobileMenu()">New Spots</a>
     <a href="#about" onclick="closeMobileMenu()">About</a>
   </div>
 
   <!-- ── HERO ── -->
-  <section class="hero">
+  <section class="hero hero--compact">
     <div class="hero__inner">
       <div class="badge">Nairobi's Best Kept Secrets</div>
       <h1 class="hero__title">
@@ -122,35 +122,30 @@
         <span class="hero__accent">Nairobi</span>
         Comes Alive
       </h1>
-      <p class="hero__sub">
-        Hidden rooftops, legendary lounges, late-night kitchens, and weekend brunch spots —
-        curated for locals and wanderers alike.
-      </p>
-      <div class="hero__actions">
-        <button class="btn-primary" onclick="document.getElementById('gems').scrollIntoView({behavior:'smooth'})">
-          Explore the Gems
-        </button>
-        <button class="btn-ghost" onclick="filterCards('weekend', null)">
-          Weekend Picks 🎉
-        </button>
-      </div>
+      <p class="hero__sub">Rooftops, lounges, late nights and weekend plans, curated for locals and wanderers.</p>
     </div>
-    <div class="hero__scroll">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
+
+    <!-- ── EVENTS CAROUSEL ── -->
+    <div class="events" id="events" aria-labelledby="eventsTitle">
+      <div class="events__head">
+        <div>
+          <div class="section-label">Happening in Nairobi</div>
+          <h2 class="events__title" id="eventsTitle">Upcoming Events</h2>
+        </div>
+        <div class="events__nav">
+          <button class="events__arrow" id="eventsPrev" aria-label="Previous events" disabled>&#8249;</button>
+          <button class="events__arrow" id="eventsNext" aria-label="Next events">&#8250;</button>
+        </div>
+      </div>
+      <div class="events__track" id="eventsTrack" role="region" aria-label="Upcoming Nairobi events" tabindex="0">
+        <p class="events__status">Loading events…</p>
+      </div>
+      <p class="events__foot">
+        Tickets are sold by the organisers. We link you to where to buy.
+        <a href="mailto:hello@nairobigems.netlify.app?subject=Submit%20an%20event">Submit an event →</a>
+      </p>
     </div>
   </section>
-
-  <!-- ── STATS STRIP ── -->
-  <div class="stats-strip">
-    <div class="stat"><span class="stat__num">15+</span><span class="stat__label">Curated Spots</span></div>
-    <div class="stat__divider"></div>
-    <div class="stat"><span class="stat__num">7</span><span class="stat__label">Neighbourhoods</span></div>
-    <div class="stat__divider"></div>
-    <div class="stat"><span class="stat__num">5★</span><span class="stat__label">Local Rating</span></div>
-    <div class="stat__divider"></div>
-    <div class="stat"><span class="stat__num">24/7</span><span class="stat__label">Nairobi Energy</span></div>
-  </div>
 
   <!-- ── ORIGINAL GEMS ── -->
   <section class="section" id="gems">
@@ -549,6 +544,17 @@
     </div>
   </section>
 
+  <!-- ── STATS STRIP ── -->
+  <div class="stats-strip">
+    <div class="stat"><span class="stat__num">15+</span><span class="stat__label">Curated Spots</span></div>
+    <div class="stat__divider"></div>
+    <div class="stat"><span class="stat__num">7</span><span class="stat__label">Neighbourhoods</span></div>
+    <div class="stat__divider"></div>
+    <div class="stat"><span class="stat__num">5★</span><span class="stat__label">Local Rating</span></div>
+    <div class="stat__divider"></div>
+    <div class="stat"><span class="stat__num">24/7</span><span class="stat__label">Nairobi Energy</span></div>
+  </div>
+
   <!-- ── ABOUT SECTION ── -->
   <section class="about-section" id="about">
     <div class="about__inner">
@@ -577,6 +583,7 @@
     <div class="footer__brand">◆ Nairobi Gems</div>
     <p class="footer__tagline">Find where Nairobi comes alive.</p>
     <div class="footer__links">
+      <a href="#events">Events</a>
       <a href="#gems">Explore</a>
       <a href="#new-spots">New Spots</a>
       <a href="#about">About</a>
